@@ -1,0 +1,22 @@
+import 'package:behn_meyer_flutter/dio/dio_repo.dart';
+import 'package:behn_meyer_flutter/models/setting/checknow.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+class CheckNowProfileApi extends DioRepo {
+  var bodyData;
+
+  CheckNowProfileApi(BuildContext context, {bodyData}) {
+    dioContext = context;
+    this.bodyData = bodyData;
+  }
+
+  Future<CheckNowDTO> call() async {
+    try {
+      Response response = await mDio.get("checkNow/profile");
+      return CheckNowDTO.fromJson(response.data);
+    } catch (e) {
+      throw e;
+    }
+  }
+}
